@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Johnnie FX Academy | Masaka City – Global Forex Trading Hub</title>
+  <!-- Google Fonts & smooth scroll behavior -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0c12;
+      color: #f0f3fa;
+      scroll-behavior: smooth;
+    }
+
+    /* wallpaper style background images with overlay */
+    .page {
+      min-height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* overlay for readability */
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: brightness(0.9) blur(1px);
+      z-index: -1;
+    }
+
+    /* specific wallpaper images */
+    .page-home {
+      background-image: url('https://images.pexels.com/photos/2102415/pexels-photo-2102415.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: 30% 20%;
+    }
+
+    .page-services {
+      background-image: url('https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center 40%;
+    }
+
+    .page-events {
+      background-image: url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .glass-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      background: rgba(10, 12, 18, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+      padding: 1rem 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+      color: #f0f3fa;
+      border-radius: 40px;
+      transition: all 0.25s ease;
+      letter-spacing: -0.2px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 215, 0, 0.2);
+      color: #ffd966;
+      transform: translateY(-2px);
+    }
+
+    .nav-btn.active {
+      background: #f5b81b;
+      color: #0a0c12;
+      box-shadow: 0 4px 12px rgba(245, 184, 27, 0.3);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 85vh;
+    }
+
+    .badge {
+      background: rgba(245, 184, 27, 0.2);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-left: 3px solid #f5b81b;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #FFF8E7, #ffdd99);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      color: #f5b81b;
+    }
+
+    .subhead {
+      font-size: 1.3rem;
+      max-width: 650px;
+      margin-bottom: 2rem;
+      color: #ddd9ce;
+    }
+
+    .btn-cta {
+      background: #f5b81b;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 48px;
+      color: #0a0c12;
+      cursor: pointer;
+      transition: 0.2s;
+      width: fit-content;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-cta:hover {
+      background: #ffce4a;
+      transform: scale(1.02);
+    }
+
+    /* services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .service-card {
+      background: rgba(20, 22, 32, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      background: rgba(30, 32, 44, 0.85);
+      border-color: #f5b81b;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffdd88;
+      margin: 1rem 0;
+    }
+
+    .service-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .small-note {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* events & exhibitions row */
+    .events-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 3rem 0 2rem;
+    }
+
+    .event-card {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 1.8rem;
+      border-left: 6px solid #f5b81b;
+      transition: 0.2s;
+    }
+
+    .event-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .capital-highlight {
+      background: linear-gradient(145deg, #1f2a1c, #0f140e);
+      border-radius: 28px;
+      padding: 1.8rem;
+      margin-top: 2rem;
+      border: 1px solid #f5b81b66;
+      text-align: center;
+    }
+
+    .capital-highlight span {
+      font-size: 2rem;
+      font-weight: 800;
+      color: gold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      border-top: 1px solid rgba(245, 184, 27, 0.3);
+    }
+
+    /* page switch handler */
+    .page {
+      display: none;
+    }
+
+    .page.active-page {
+      display: block;
+    }
+
+    @media (max-width: 750px) {
+      h1 { font-size: 2.5rem; }
+      .subhead { font-size: 1rem; }
+      .container { padding: 1.5rem; }
+      .glass-nav { gap: 0.8rem; padding: 0.8rem 1rem; }
+      .nav-btn { font-size: 1rem; padding: 0.4rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sticky Navigation Tabs -->
+<div class="glass-nav">
+  <button class="nav-btn active" data-page="home">🏠 HOME</button>
+  <button class="nav-btn" data-page="services">📚 SERVICES & PRICING</button>
+  <button class="nav-btn" data-page="events">🏆 EVENTS & CAPITAL</button>
+</div>
+
+<!-- ================= PAGE 1: HOME / ACADEMY INTRODUCTION ================= -->
+<div id="home-page" class="page page-home active-page">
+  <div class="container hero">
+    <div class="badge">📍 Masaka City, Uganda — Global Reach</div>
+    <h1>JOHNNIE FX<br>ACADEMY</h1>
+    <p class="subhead">Empowering new beginner traders worldwide with professional mentorship, tools & real market insight. From Masaka to the world — your trading journey starts here.</p>
+    <button class="btn-cta" data-nav="services">🔥 Explore Services →</button>
+    <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border-radius: 28px; padding: 1rem 1.8rem;">
+        🌍 <strong>+20 Countries</strong> | Traders community
+      </div>
+      <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border-radius: 28px; padding: 1rem 1.8rem;">
+        🎓 <strong>Beginner-first approach</strong> | Live support
+      </div>
+    </div>
+  </div>
+  <footer>
+    © 2025 Johnnie FX Academy — Masaka City | Transforming beginners into consistent traders
+  </footer>
+</div>
+
+<!-- ================= PAGE 2: SERVICES OFFERED (MENTORSHIP, LESSONS, PROPFIRM, ETC) ================= -->
+<div id="services-page" class="page page-services">
+  <div class="container">
+    <div class="badge" style="margin-top: 0.5rem;">💰 affordable packages — global access</div>
+    <h2 style="font-size: 2.8rem; margin-bottom: 0.5rem;">Premium trading<span class="highlight"> services</span></h2>
+    <p style="font-size: 1.1rem; max-width: 700px; margin-bottom: 1rem;">Designed for new beginners and aspiring pros. All services remote & physical support available.</p>
+
+    <div class="services-grid">
+      <!-- Mentorship Program -->
+      <div class="service-card">
+        <div class="service-title">🎯 Mentorship Program</div>
+        <div class="price">$30 USD</div>
+        <p>1-on-1 coaching, weekly market reviews, risk management blueprint, and lifetime community access.</p>
+        <div class="small-note">⭐ beginner friendly + certificate</div>
+      </div>
+      <!-- Online lessons -->
+      <div class="service-card">
+        <div class="service-title">💻 Online Lessons</div>
+        <div class="price">$25 USD</div>
+        <p>Structured video modules + live webinars, technical analysis foundation, trading psychology training.</p>
+        <div class="small-note">🎥 self-paced + quizzes</div>
+      </div>
+      <!-- Propfirm management -->
+      <div class="service-card">
+        <div class="service-title">📈 Propfirm Management</div>
+        <div class="price">$17 USD</div>
+        <p>Guided challenge preparation, risk parameters, and direct support to pass FTMO / MFF challenges.</p>
+        <div class="small-note">⚡ verified strategies</div>
+      </div>
+      <!-- Physical Forex Lessons -->
+      <div class="service-card">
+        <div class="service-title">🏛️ Physical Forex Lessons</div>
+        <div class="price">$70 USD</div>
+        <p>In-person sessions at Masaka City hub. Hands-on chart labs, live trading sessions, full mentorship.</p>
+        <div class="small-note">📍 Masaka HQ & regional meetups</div>
+      </div>
+      <!-- Forex Trading Booklets -->
+      <div class="service-card">
+        <div class="service-title">📘 Forex Trading Booklets</div>
+        <div class="price">$12 USD</div>
+        <p>Digital & paperback editions: price action, supply/demand, journal templates & actionable edge.</p>
+        <div class="small-note">📦 shipped worldwide / e-book option</div>
+      </div>
+    </div>
+    <div style="margin-top: 2rem; text-align: center; background: rgba(0,0,0,0.5); border-radius: 2rem; padding: 1rem;">
+      🚀 *All prices in USD. Secure payment & instant access for digital services.*
+    </div>
+  </div>
+  <footer>
+    🌟 Join thousands of beginners — flexible plans for every budget.
+  </footer>
+</div>
+
+<!-- ================= PAGE 3: TOP TRADERS, EXHIBITIONS, CAPITAL PROGRAM ================= -->
+<div id="events-page" class="page page-events">
+  <div class="container">
+    <div class="badge" style="background: rgba(0,0,0,0.5);">🏅 Each intake — next level opportunities</div>
+    <h2 style="font-size: 2.5rem;">Global Forex Events & <span class="highlight">Capital Funding</span></h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1rem;">We connect talent with real capital. Johnnie FX Academy hosts the most anticipated forex summits in East Africa.</p>
+
+    <div class="events-showcase">
+      <div class="event-card">
+        <h3>🏆 Top Traders Arena</h3>
+        <p>Every quarter we invite top-tier professional forex traders from Nairobi, Dubai, London, and Kampala. Interactive panels, live trading sessions, and Q&A with legends.</p>
+        <div style="margin-top: 12px;">✨ <strong>Next event:</strong> October 2025 – Hybrid (Masaka + Zoom)</div>
+      </div>
+      <div class="event-card">
+        <h3>🎪 Forex Exhibitions</h3>
+        <p>Industry-leading expos featuring broker booths, trading tools, fintech innovations. Network with prop firms & investors. Free entry for academy members.</p>
+        <div style="margin-top: 12px;">📅 Bi-annual exhibitions at Masaka City Convention Center</div>
+      </div>
+    </div>
+
+    <!-- Capital to outstanding traders each intake -->
+    <div class="capital-highlight">
+      <span>💰 CAPITAL BOOST PROGRAM</span>
+      <p style="margin-top: 0.8rem; font-size: 1.3rem; font-weight: 500;">We offer <strong style="color: #FFD966;">funded capital up to $5,000</strong> to outstanding forex traders <br> <strong>EACH INTAKE</strong> (monthly evaluation cycle)</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+        <div>✅ Performance-based selection</div>
+        <div>✅ Real account management support</div>
+        <div>✅ Profit split 70/30 in your favor</div>
+      </div>
+      <button class="btn-cta" style="margin: 1.2rem auto 0; background: #ffd966; color:#0a0c12;" data-nav="services">Apply for next intake →</button>
+    </div>
+
+    <div style="background: rgba(0,0,0,0.5); border-radius: 32px; padding: 1.5rem; margin-top: 2rem; text-align: center;">
+      🌍 “Johnnie FX Academy gave me the skills and funded my prop account — life changing!” — Angela M. (Intake 12 Winner)
+    </div>
+  </div>
+  <footer>
+    🏁 Next intake deadline: 30th of each month. Capital award ceremony livestreamed.
+  </footer>
+</div>
+
+<script>
+  // page navigation logic
+  const pages = {
+    home: document.getElementById('home-page'),
+    services: document.getElementById('services-page'),
+    events: document.getElementById('events-page')
+  };
+
+  const navBtns = document.querySelectorAll('.nav-btn');
+
+  function activatePage(pageId) {
+    // hide all pages
+    Object.values(pages).forEach(page => {
+      if (page) page.classList.remove('active-page');
+    });
+    // show selected page
+    if (pages[pageId]) pages[pageId].classList.add('active-page');
+    
+    // update active button style
+    navBtns.forEach(btn => {
+      const btnPage = btn.getAttribute('data-page');
+      if ((btnPage === 'home' && pageId === 'home') ||
+          (btnPage === 'services' && pageId === 'services') ||
+          (btnPage === 'events' && pageId === 'events')) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    
+    // optional: scroll to top on page change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // add event listeners to navigation buttons
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const pageKey = btn.getAttribute('data-page');
+      if (pageKey === 'home') activatePage('home');
+      else if (pageKey === 'services') activatePage('services');
+      else if (pageKey === 'events') activatePage('events');
+    });
+  });
+
+  // also handle any internal buttons that have data-nav attribute (like cta buttons)
+  const ctaButtons = document.querySelectorAll('[data-nav]');
+  ctaButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-nav');
+      if (target === 'services') activatePage('services');
+      else if (target === 'home') activatePage('home');
+      else if (target === 'events') activatePage('events');
+    });
+  });
+
+  // initial page = home is already active, but ensure correct state after dynamic load
+  // fix if any mishap: default home active
+  if (!pages.home.classList.contains('active-page')) {
+    activatePage('home');
+  }
+  
+  // Additional: attach images wallpapers are set via background-image in CSS classes (page-home, page-services, page-events)
+  // high-quality free stock images used from Pexels (attribution free for commercial use)
+  // Ensure default background fallback dark.
+  console.log("Johnnie FX Academy | Masaka City — Wallpaper FX Academy ready");
+</script>
+</body>
+</html>
